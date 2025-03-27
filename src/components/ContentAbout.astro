@@ -1,121 +1,87 @@
 ---
 import { Code } from 'astro:components';
 
-const code = `data class Developer (
-    val name: string,
+const code = `data class Developer(
+    val name: String,
     val skills: List<String>,
     val interests: List<String>
 )
 
 data class TechStack(
-    val Android: List<String>,
-    val UI: List<String>,
-    val Backend: List<String>
+    val android: List<String>,
+    val ui: List<String>,
+    val backend: List<String>
 )
 
 enum class ContactType {
-    GITHUB, TWITTER, LINKEDIN, XING, EMAIL
+    GITHUB, TWITTER, LINKEDIN, EMAIL
 }
 
-const techStack: TechStack = {
-    devOps: [
-        'GitLab',
-        'GitHub',
-        'Cloudflare',
-        'Docker'
-    ],
-    frontend: [
-        'Angular',
-        'JavaScript',
-        'TypeScript',
-        'TailwindCSS',
-        'PrimeNG',
-        'Astro',
-        'Ionic',
-        'Stencil',
-        'Capacitor',
-        'SCSS',
-        'Markdown',
-        'WordPress'
-    ],
-    backend: [
-        'Supabase',
-        'Node.js',
-        'Bun',
-        'Deno',
-        'PostgreSQL',
-        'MySQL',
-        'S3 Storage',
-        'Resend'
-    ]
-};
+val techStack = TechStack(
+    android = listOf(
+        "Kotlin",
+        "Jetpack Compose",
+        "Android SDK",
+        "Room Database",
+        "Hilt"
+    ),
+    ui = listOf(
+        "XML",
+        "Material Design",
+        "Jetpack Compose",
+        "Figma"
+    ),
+    backend = listOf(
+        "Firebase",
+        "Supabase",
+        "Node.js",
+        "Ktor"
+    )
+)
 
-// Developer profile
-const me: Developer = {
-    name: 'Dejan Vi.',
-    skills: [
-        ...techStack.devOps,
-        ...techStack.backend,
-        ...techStack.frontend
-    ],
-    interests: [
-        'Open Source',
-        'Security',
-        'Privacy',
-        'Performance',
-        'Self-Hosting',
-        'Networking'
-    ]
-};
+val me = Developer(
+    name = "Fernando",
+    skills = techStack.android + techStack.ui + techStack.backend,
+    interests = listOf(
+        "Mobile Development",
+        "Open Source",
+        "UI/UX Design",
+        "Performance Optimization"
+    )
+)
 
-// Contact function
-const contact = (type: ContactType): string => {
-    switch (type) {
-        case 'github':
-            return 'https://github.com/devidevio';
-        case 'twitter':
-            return 'https://x.com/devidev_io';
-        case 'linkedIn':
-            return 'https://www.linkedin.com/in/dejan-vi';
-        case 'xing':
-            return 'https://www.xing.com/profile/Dejan_Vintonjiv';
-        case 'email':
-            return 'hi@devidev.io';
-        default:
-            return 'Send fax.';
+fun getContactUrl(type: ContactType): String {
+    return when (type) {
+        ContactType.GITHUB -> "https://github.com/tu_usuario"
+        ContactType.LINKEDIN -> "https://linkedin.com/in/tu_perfil"
+        ContactType.EMAIL -> "mailto:tuemail@example.com"
+        else -> "No disponible"
     }
-};
-
+}
 `;
 ---
 
 <Code
     code={code}
-    lang="js"
+    lang="kotlin"
     wrap={true}
 />
 
 <style is:global>
 
-    /* Custom styling for code block line numbers */
+    /* Estilos personalizados para el código */
     pre.astro-code {
-        @apply bg-transparent !important;
+        @apply bg-gray-900 text-white p-4 rounded-lg overflow-auto !important;
     }
 
     pre.astro-code code {
-        @apply block;
-        counter-reset: step;
-        counter-increment: step 0;
-    }
-
-    pre.astro-code code .line {
-        @apply relative;
+        @apply block font-mono;
     }
 
     pre.astro-code code .line::before {
         content: counter(step);
         counter-increment: step;
-        @apply text-gray-600 pr-2;
+        @apply text-gray-500 pr-4;
     }
 
 </style>
