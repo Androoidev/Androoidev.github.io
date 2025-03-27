@@ -3,30 +3,46 @@ import Socials from './Socials.astro';
 ---
 
 <div>
-
     <!-- Start: Terminal -->
-    <div class="mt-6 bg-black rounded-lg p-4 border border-gray-600 text-xs">
-
+    <div class="mt-6 bg-black rounded-lg p-4 border border-gray-600 text-xs font-mono">
         <div class="flex items-center mb-2">
             <span class="text-primary mr-2">$</span>
             <span class="text-gray-100">kotlin connect</span>
         </div>
 
-        <div class="mt-2 text-gray-400">
-            Establishing connection...
-            <br />
-            Fetching new challenges...
-            <br />
-            Compiling solutions...
-            <br />
-            Success! The next big app is loading... 🚀  
-        </div>
-
+        <div id="terminal-output" class="mt-2 text-gray-400"></div>
     </div>
     <!-- End: Terminal -->
 
     <!-- Start: Social Links -->
     <Socials />
     <!-- End: Social Links -->
-
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const lines = [
+            "Establishing connection...",
+            "Fetching new challenges...",
+            "Compiling solutions...",
+            "Success! The next big app is loading... 🚀"
+        ];
+
+        const terminalOutput = document.getElementById("terminal-output");
+        let index = 0;
+
+        function typeLine() {
+            if (index < lines.length) {
+                const line = document.createElement("div");
+                line.textContent = lines[index];
+                terminalOutput.appendChild(line);
+                index++;
+
+                setTimeout(typeLine, 1000); // Tiempo entre líneas (ajústalo si quieres)
+            }
+        }
+
+        typeLine();
+    });
+</script>
+
