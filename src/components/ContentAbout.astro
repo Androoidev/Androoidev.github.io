@@ -14,7 +14,7 @@ data class TechStack(
 )
 
 enum class ContactType {
-    GITHUB, TWITTER, LINKEDIN, EMAIL
+    GITHUB, LINKEDIN, EMAIL
 }
 
 val techStack = TechStack(
@@ -29,32 +29,30 @@ val techStack = TechStack(
         "XML",
         "Material Design",
         "Jetpack Compose",
-        "Figma"
     ),
     backend = listOf(
         "Firebase",
-        "Supabase",
-        "Node.js",
         "Ktor"
     )
 )
 
 val me = Developer(
-    name = "Fernando",
+    name = "Luis",
     skills = techStack.android + techStack.ui + techStack.backend,
     interests = listOf(
         "Mobile Development",
         "Open Source",
         "UI/UX Design",
-        "Performance Optimization"
+        "Performance Optimization",
+        "MVVM"
     )
 )
 
 fun getContactUrl(type: ContactType): String {
     return when (type) {
-        ContactType.GITHUB -> "https://github.com/tu_usuario"
+        ContactType.GITHUB -> "https://github.com/Androoidev"
         ContactType.LINKEDIN -> "https://linkedin.com/in/tu_perfil"
-        ContactType.EMAIL -> "mailto:tuemail@example.com"
+        ContactType.EMAIL -> "luiszenteno.dev@gmail.com"
         else -> "No disponible"
     }
 }
@@ -72,16 +70,21 @@ fun getContactUrl(type: ContactType): String {
     /* Estilos personalizados para el código */
     pre.astro-code {
         @apply bg-gray-900 text-white p-4 rounded-lg overflow-auto !important;
+        counter-reset: line;
     }
 
     pre.astro-code code {
         @apply block font-mono;
     }
 
-    pre.astro-code code .line::before {
-        content: counter(step);
-        counter-increment: step;
-        @apply text-gray-500 pr-4;
+       pre.astro-code code .line {
+        @apply relative;
+        counter-increment: line;
+    }
+
+   pre.astro-code code .line::before {
+        content: counter(line);
+        @apply absolute left-0 top-0 pl-3 text-gray-500;
     }
 
 </style>
