@@ -77,12 +77,14 @@ fun getContactUrl(type: ContactType): String {
         @apply block font-mono;
     }
 
-       pre.astro-code code .line {
+    pre.astro-code code .line {
         @apply relative;
         counter-increment: line;
+        padding-left: 2.5em; /* Espacio para los números */
     }
 
-   pre.astro-code code .line::before {
+
+    pre.astro-code code .line::before {
         content: counter(line);
         @apply absolute left-0 top-0 pl-3 text-gray-500;
     }
