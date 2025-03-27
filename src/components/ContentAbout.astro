@@ -1,19 +1,21 @@
 ---
 import { Code } from 'astro:components';
 
-const code = `interface Developer {
-    name: string;
-    skills: string[];
-    interests: string[];
-};
+const code = `data class Developer (
+    val name: string,
+    val skills: List<String>,
+    val interests: List<String>
+)
 
-interface TechStack {
-    devOps: string[];
-    backend: string[];
-   frontend: string[];
-};
+data class TechStack(
+    val Android: List<String>,
+    val UI: List<String>,
+    val Backend: List<String>
+)
 
-type ContactType = 'github' | 'twitter' | 'linkedIn' | 'xing' | 'email';
+enum class ContactType {
+    GITHUB, TWITTER, LINKEDIN, XING, EMAIL
+}
 
 const techStack: TechStack = {
     devOps: [
